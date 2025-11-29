@@ -79,21 +79,21 @@ public class Injector {
         }
     }
 
-//    private static void injectFields(Object instance) {
-//        Class<?> clazz = instance.getClass();
-//        for (Field field : clazz.getDeclaredFields()) {
-//            if (field.isAnnotationPresent(Inject.class)) {
-//                Class<?> dependencyType = field.getType();
-//
-//                Object dependency = getInstance(dependencyType);
-//
-//                field.setAccessible(true);
-//                try {
-//                    field.set(instance, dependency);
-//                } catch (IllegalAccessException e) {
-//                    throw new RuntimeException("Failed to inject field: " + field, e);
-//                }
-//            }
-//        }
-//    }
+    private static void injectFields(Object instance) {
+        Class<?> clazz = instance.getClass();
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)) {
+                Class<?> dependencyType = field.getType();
+
+                Object dependency = getInstance(dependencyType);
+
+                field.setAccessible(true);
+                try {
+                    field.set(instance, dependency);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException("Failed to inject field: " + field, e);
+                }
+            }
+        }
+    }
 }
