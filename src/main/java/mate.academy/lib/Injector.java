@@ -85,7 +85,7 @@ public class Injector {
                 field.setAccessible(true);
                 try {
                     field.set(instance, dependency);
-                } catch (Exception e) {
+                } catch (IllegalAccessException e) {
                     throw new RuntimeException("Cannot inject into " + field.getName(), e);
                 }
             }
